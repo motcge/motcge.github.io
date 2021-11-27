@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spring常用加密 | motcge&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/logo.jpg">
+    <meta name="description" content="个人博客">
+    
+    <link rel="preload" href="/assets/css/0.styles.7d4fa611.css" as="style"><link rel="preload" href="/assets/js/app.998050a2.js" as="script"><link rel="preload" href="/assets/js/2.863743f0.js" as="script"><link rel="preload" href="/assets/js/17.82c12066.js" as="script"><link rel="prefetch" href="/assets/js/10.05d27d97.js"><link rel="prefetch" href="/assets/js/11.d58ab806.js"><link rel="prefetch" href="/assets/js/12.723610f6.js"><link rel="prefetch" href="/assets/js/13.edb55623.js"><link rel="prefetch" href="/assets/js/14.ab136c19.js"><link rel="prefetch" href="/assets/js/15.3e958bd9.js"><link rel="prefetch" href="/assets/js/16.e8f6bdba.js"><link rel="prefetch" href="/assets/js/18.1466c914.js"><link rel="prefetch" href="/assets/js/19.63404f8c.js"><link rel="prefetch" href="/assets/js/20.fcd87bbb.js"><link rel="prefetch" href="/assets/js/21.0dbe51a9.js"><link rel="prefetch" href="/assets/js/22.f0f45c76.js"><link rel="prefetch" href="/assets/js/23.54596e16.js"><link rel="prefetch" href="/assets/js/24.fa9b1ec3.js"><link rel="prefetch" href="/assets/js/25.280e690b.js"><link rel="prefetch" href="/assets/js/3.e344c605.js"><link rel="prefetch" href="/assets/js/4.556c60a5.js"><link rel="prefetch" href="/assets/js/5.315727e7.js"><link rel="prefetch" href="/assets/js/6.75e9d5c0.js"><link rel="prefetch" href="/assets/js/7.330ed93c.js"><link rel="prefetch" href="/assets/js/8.5aebb4b8.js"><link rel="prefetch" href="/assets/js/9.b58ab345.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.7d4fa611.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">motcge's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/Android/main.html" class="nav-link">
+  Android
+</a></div><div class="nav-item"><a href="/SpringBoot/main.html" class="nav-link">
+  SpringBoot
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/Android/main.html" class="nav-link">
+  Android
+</a></div><div class="nav-item"><a href="/SpringBoot/main.html" class="nav-link">
+  SpringBoot
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/views/" aria-current="page" class="sidebar-link">概览</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Android</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>SpringBoot</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/views/SpringBoot/main.html" class="sidebar-link">简介与概览</a></li><li><a href="/views/SpringBoot/fileUpAndDownload.html" class="sidebar-link">文件上传与下载</a></li><li><a href="/views/SpringBoot/redisConfig.html" class="sidebar-link">配置redis</a></li><li><a href="/views/SpringBoot/encryption.html" aria-current="page" class="active sidebar-link">Spring常用加密</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/views/SpringBoot/https.html" class="sidebar-link">配置Https</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>API</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>uni-app</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>SoftWareConfig</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="md5加盐加密"><a href="#md5加盐加密" class="header-anchor">#</a> MD5加盐加密</h3> <p>实现起来较为简单</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">DigestUtils</span><span class="token punctuation">;</span>
+<span class="token comment">// p2为盐</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Md5SaltUtil</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">getMd5Str</span><span class="token punctuation">(</span><span class="token class-name">String</span> p1<span class="token punctuation">,</span><span class="token class-name">String</span> p2<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">String</span> temp<span class="token operator">=</span>p1<span class="token operator">+</span>p2<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token class-name">DigestUtils</span><span class="token punctuation">.</span><span class="token function">md5DigestAsHex</span><span class="token punctuation">(</span>temp<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">11/9/2021, 6:53:24 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/views/SpringBoot/redisConfig.html" class="prev">
+        配置redis
+      </a></span> <span class="next"><a href="/views/SpringBoot/https.html">
+        配置Https
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.998050a2.js" defer></script><script src="/assets/js/2.863743f0.js" defer></script><script src="/assets/js/17.82c12066.js" defer></script>
+  </body>
+</html>

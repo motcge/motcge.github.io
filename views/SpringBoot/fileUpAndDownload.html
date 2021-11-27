@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>文件上传与下载 | motcge&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/logo.jpg">
+    <meta name="description" content="个人博客">
+    
+    <link rel="preload" href="/assets/css/0.styles.7d4fa611.css" as="style"><link rel="preload" href="/assets/js/app.998050a2.js" as="script"><link rel="preload" href="/assets/js/2.863743f0.js" as="script"><link rel="preload" href="/assets/js/18.1466c914.js" as="script"><link rel="prefetch" href="/assets/js/10.05d27d97.js"><link rel="prefetch" href="/assets/js/11.d58ab806.js"><link rel="prefetch" href="/assets/js/12.723610f6.js"><link rel="prefetch" href="/assets/js/13.edb55623.js"><link rel="prefetch" href="/assets/js/14.ab136c19.js"><link rel="prefetch" href="/assets/js/15.3e958bd9.js"><link rel="prefetch" href="/assets/js/16.e8f6bdba.js"><link rel="prefetch" href="/assets/js/17.82c12066.js"><link rel="prefetch" href="/assets/js/19.63404f8c.js"><link rel="prefetch" href="/assets/js/20.fcd87bbb.js"><link rel="prefetch" href="/assets/js/21.0dbe51a9.js"><link rel="prefetch" href="/assets/js/22.f0f45c76.js"><link rel="prefetch" href="/assets/js/23.54596e16.js"><link rel="prefetch" href="/assets/js/24.fa9b1ec3.js"><link rel="prefetch" href="/assets/js/25.280e690b.js"><link rel="prefetch" href="/assets/js/3.e344c605.js"><link rel="prefetch" href="/assets/js/4.556c60a5.js"><link rel="prefetch" href="/assets/js/5.315727e7.js"><link rel="prefetch" href="/assets/js/6.75e9d5c0.js"><link rel="prefetch" href="/assets/js/7.330ed93c.js"><link rel="prefetch" href="/assets/js/8.5aebb4b8.js"><link rel="prefetch" href="/assets/js/9.b58ab345.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.7d4fa611.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">motcge's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/Android/main.html" class="nav-link">
+  Android
+</a></div><div class="nav-item"><a href="/SpringBoot/main.html" class="nav-link">
+  SpringBoot
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/Android/main.html" class="nav-link">
+  Android
+</a></div><div class="nav-item"><a href="/SpringBoot/main.html" class="nav-link">
+  SpringBoot
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/views/" aria-current="page" class="sidebar-link">概览</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Android</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>SpringBoot</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/views/SpringBoot/main.html" class="sidebar-link">简介与概览</a></li><li><a href="/views/SpringBoot/fileUpAndDownload.html" aria-current="page" class="active sidebar-link">文件上传与下载</a></li><li><a href="/views/SpringBoot/redisConfig.html" class="sidebar-link">配置redis</a></li><li><a href="/views/SpringBoot/encryption.html" class="sidebar-link">Spring常用加密</a></li><li><a href="/views/SpringBoot/https.html" class="sidebar-link">配置Https</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>API</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>uni-app</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>SoftWareConfig</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="配置参数"><a href="#配置参数" class="header-anchor">#</a> 配置参数</h1> <p>在application配置文件中加入如下参数(以.yml文件为例)</p> <div class="language-java extra-class"><pre class="language-java"><code>spring<span class="token operator">:</span>
+  servlet<span class="token operator">:</span>
+    multipart<span class="token operator">:</span>
+      # 开启multipart上传功能
+      enabled<span class="token operator">:</span> <span class="token boolean">true</span>
+      # 文件写入磁盘的阈值
+      file<span class="token operator">-</span>size<span class="token operator">-</span>threshold<span class="token operator">:</span> <span class="token number">2</span>KB
+      # 最大文件大小
+      max<span class="token operator">-</span>file<span class="token operator">-</span>size<span class="token operator">:</span> <span class="token number">100</span>MB
+      # 最大请求大小
+      max<span class="token operator">-</span>request<span class="token operator">-</span>size<span class="token operator">:</span> <span class="token number">120</span>MB
+
+file<span class="token operator">:</span>
+  upload<span class="token operator">-</span>dir<span class="token operator">:</span> <span class="token string">'D:\live_applet\upload'</span>
+
+</code></pre></div><p>创建POJO类绑定自定义'file'参数,ReadFilePath.java</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>context<span class="token punctuation">.</span>properties<span class="token punctuation">.</span></span><span class="token class-name">ConfigurationProperties</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Component</span>
+<span class="token comment">//接收application.yml中的file下面的属性</span>
+<span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">&quot;file&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ReadFilePath</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> uploadDir<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getUploadDir</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> uploadDir<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setUploadDir</span><span class="token punctuation">(</span><span class="token class-name">String</span> uploadDir<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>uploadDir <span class="token operator">=</span> uploadDir<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>创建资源实体类</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Date</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FileResources</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> resourcesId<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> fileName<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> fileSuffix<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> fileType<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">long</span> fileSize<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> url<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Date</span> createTime<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">long</span> userId<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">FileResources</span><span class="token punctuation">(</span> <span class="token class-name">String</span> fileName<span class="token punctuation">,</span> <span class="token class-name">String</span> fileSuffix<span class="token punctuation">,</span> <span class="token class-name">String</span> fileType<span class="token punctuation">,</span> <span class="token keyword">long</span> fileSize<span class="token punctuation">,</span> <span class="token class-name">String</span> url<span class="token punctuation">,</span> <span class="token keyword">long</span> userId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>fileName <span class="token operator">=</span> fileName<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>fileSuffix <span class="token operator">=</span> fileSuffix<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>fileType <span class="token operator">=</span> fileType<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>fileSize <span class="token operator">=</span> fileSize<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>url <span class="token operator">=</span> url<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>userId <span class="token operator">=</span> userId<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>创建文件异常类</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FileException</span> <span class="token keyword">extends</span> <span class="token class-name">RuntimeException</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token class-name">FileException</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">FileException</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">FileException</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">,</span> <span class="token class-name">Throwable</span> cause<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> cause<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>创建service接口</p> <div class="language-java extra-class"><pre class="language-java"><code>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IFileService</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * 插入文件信息
+     *
+     * @param fileResources 文件信息
+     * @return 操作结果
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">insertFileInfo</span><span class="token punctuation">(</span><span class="token class-name">FileResources</span> fileResources<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/**
+     * 获取用户文件信息
+     *
+     * @param userId 用户id
+     * @return 操作结果
+     */</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">FileResources</span><span class="token punctuation">&gt;</span></span> <span class="token function">getUserFile</span><span class="token punctuation">(</span><span class="token keyword">long</span> userId<span class="token punctuation">,</span> <span class="token class-name">String</span> fileType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>创建service类,</p> <div class="language-java extra-class"><pre class="language-java"><code>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>live<span class="token punctuation">.</span>applet<span class="token punctuation">.</span>common<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>file<span class="token punctuation">.</span></span><span class="token class-name">ReadFilePath</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>live<span class="token punctuation">.</span>applet<span class="token punctuation">.</span>file<span class="token punctuation">.</span>domain<span class="token punctuation">.</span></span><span class="token class-name">FileResources</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>live<span class="token punctuation">.</span>applet<span class="token punctuation">.</span>file<span class="token punctuation">.</span>exception<span class="token punctuation">.</span></span><span class="token class-name">FileException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>live<span class="token punctuation">.</span>applet<span class="token punctuation">.</span>file<span class="token punctuation">.</span>mapper<span class="token punctuation">.</span></span><span class="token class-name">FileResourcesMapper</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>live<span class="token punctuation">.</span>applet<span class="token punctuation">.</span>file<span class="token punctuation">.</span>service<span class="token punctuation">.</span></span><span class="token class-name">IFileService</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>core<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">Resource</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>core<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">UrlResource</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Service</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">StringUtils</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>multipart<span class="token punctuation">.</span></span><span class="token class-name">MultipartFile</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>net<span class="token punctuation">.</span></span><span class="token class-name">MalformedURLException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>nio<span class="token punctuation">.</span>file<span class="token punctuation">.</span></span><span class="token class-name">Files</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>nio<span class="token punctuation">.</span>file<span class="token punctuation">.</span></span><span class="token class-name">Path</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>nio<span class="token punctuation">.</span>file<span class="token punctuation">.</span></span><span class="token class-name">Paths</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>nio<span class="token punctuation">.</span>file<span class="token punctuation">.</span></span><span class="token class-name">StandardCopyOption</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Objects</span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FileServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">IFileService</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Path</span> fileStorageLocation<span class="token punctuation">;</span> <span class="token comment">// 文件在本地存储的地址</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">FileResourcesMapper</span> fileResourcesMapper<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">public</span> <span class="token class-name">FileServiceImpl</span><span class="token punctuation">(</span><span class="token class-name">ReadFilePath</span> filePath<span class="token punctuation">,</span> <span class="token class-name">FileResourcesMapper</span> fileResourcesMapper<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>fileStorageLocation <span class="token operator">=</span> <span class="token class-name">Paths</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>filePath<span class="token punctuation">.</span><span class="token function">getUploadDir</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toAbsolutePath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>fileResourcesMapper<span class="token operator">=</span>fileResourcesMapper<span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Files</span><span class="token punctuation">.</span><span class="token function">createDirectories</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>fileStorageLocation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">FileException</span><span class="token punctuation">(</span><span class="token string">&quot;Could not create the directory where the uploaded files will be stored.&quot;</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * 存储文件到系统
+     *
+     * @param file 文件
+     * @return 文件名
+     */</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">storeFile</span><span class="token punctuation">(</span><span class="token class-name">MultipartFile</span> file<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Normalize file name</span>
+        <span class="token class-name">String</span> fileName <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">&quot;_&quot;</span><span class="token operator">+</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">cleanPath</span><span class="token punctuation">(</span><span class="token class-name">Objects</span><span class="token punctuation">.</span><span class="token function">requireNonNull</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">getOriginalFilename</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Check if the file's name contains invalid characters</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>fileName<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">&quot;..&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">FileException</span><span class="token punctuation">(</span><span class="token string">&quot;Sorry! Filename contains invalid path sequence &quot;</span> <span class="token operator">+</span> fileName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token comment">// Copy file to the target location (Replacing existing file with the same name)</span>
+            <span class="token class-name">Path</span> targetLocation <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>fileStorageLocation<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>fileName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Files</span><span class="token punctuation">.</span><span class="token function">copy</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> targetLocation<span class="token punctuation">,</span> <span class="token class-name">StandardCopyOption</span><span class="token punctuation">.</span>REPLACE_EXISTING<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">return</span> fileName<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">FileException</span><span class="token punctuation">(</span><span class="token string">&quot;Could not store file &quot;</span> <span class="token operator">+</span> fileName <span class="token operator">+</span> <span class="token string">&quot;. Please try again!&quot;</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * 加载文件
+     * @param fileName 文件名
+     * @return 文件
+     */</span>
+    <span class="token keyword">public</span> <span class="token class-name">Resource</span> <span class="token function">loadFileAsResource</span><span class="token punctuation">(</span><span class="token class-name">String</span> fileName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Path</span> filePath <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>fileStorageLocation<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>fileName<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Resource</span> resource <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UrlResource</span><span class="token punctuation">(</span>filePath<span class="token punctuation">.</span><span class="token function">toUri</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>resource<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> resource<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">FileException</span><span class="token punctuation">(</span><span class="token string">&quot;File not found &quot;</span> <span class="token operator">+</span> fileName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">MalformedURLException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">FileException</span><span class="token punctuation">(</span><span class="token string">&quot;File not found &quot;</span> <span class="token operator">+</span> fileName<span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">insertFileInfo</span><span class="token punctuation">(</span><span class="token class-name">FileResources</span> fileResources<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> fileResourcesMapper<span class="token punctuation">.</span><span class="token function">insertFileInfo</span><span class="token punctuation">(</span>fileResources<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">FileResources</span><span class="token punctuation">&gt;</span></span> <span class="token function">getUserFile</span><span class="token punctuation">(</span><span class="token keyword">long</span> userId<span class="token punctuation">,</span> <span class="token class-name">String</span> fileType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">FileResources</span> fileResources<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">FileResources</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fileResources<span class="token punctuation">.</span><span class="token function">setUserId</span><span class="token punctuation">(</span>userId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fileResources<span class="token punctuation">.</span><span class="token function">setFileType</span><span class="token punctuation">(</span>fileType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> fileResourcesMapper<span class="token punctuation">.</span><span class="token function">getUserFile</span><span class="token punctuation">(</span>fileResources<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>创建controller<br>
+tips:<code>this::uploadFile</code>报错可能是接受的参数不匹配</p> <div class="language-java extra-class"><pre class="language-java"><code>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>live<span class="token punctuation">.</span>applet<span class="token punctuation">.</span>common<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span><span class="token class-name">AjaxResult</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>live<span class="token punctuation">.</span>applet<span class="token punctuation">.</span>file<span class="token punctuation">.</span>domain<span class="token punctuation">.</span></span><span class="token class-name">FileResources</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>live<span class="token punctuation">.</span>applet<span class="token punctuation">.</span>file<span class="token punctuation">.</span>service<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span><span class="token class-name">FileServiceImpl</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>core<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">Resource</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">HttpHeaders</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">MediaType</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">ResponseEntity</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>multipart<span class="token punctuation">.</span></span><span class="token class-name">MultipartFile</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>support<span class="token punctuation">.</span></span><span class="token class-name">ServletUriComponentsBuilder</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">HttpServletRequest</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Objects</span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FileController</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">FileServiceImpl</span> fileService<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">public</span> <span class="token class-name">FileController</span><span class="token punctuation">(</span><span class="token class-name">FileServiceImpl</span> fileService<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>fileService <span class="token operator">=</span> fileService<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/uploadFile&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">AjaxResult</span> <span class="token function">uploadFile</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">&quot;file&quot;</span><span class="token punctuation">)</span> <span class="token class-name">MultipartFile</span> file<span class="token punctuation">,</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">&quot;userId&quot;</span><span class="token punctuation">)</span> <span class="token keyword">long</span> userId<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">String</span> fileName <span class="token operator">=</span> fileService<span class="token punctuation">.</span><span class="token function">storeFile</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">String</span> fileDownloadUri <span class="token operator">=</span> <span class="token class-name">ServletUriComponentsBuilder</span><span class="token punctuation">.</span><span class="token function">fromCurrentContextPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">path</span><span class="token punctuation">(</span><span class="token string">&quot;/downloadFile/&quot;</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">path</span><span class="token punctuation">(</span>fileName<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">toUriString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> fileType<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token class-name">Objects</span><span class="token punctuation">.</span><span class="token function">requireNonNull</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">getContentType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">&quot;image&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            fileType<span class="token operator">=</span><span class="token string">&quot;0&quot;</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token class-name">Objects</span><span class="token punctuation">.</span><span class="token function">requireNonNull</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">getContentType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">&quot;video&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            fileType<span class="token operator">=</span><span class="token string">&quot;1&quot;</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+            fileType<span class="token operator">=</span><span class="token string">&quot;-1&quot;</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">FileResources</span> fileResources<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">FileResources</span><span class="token punctuation">(</span>fileName<span class="token punctuation">,</span> file<span class="token punctuation">.</span><span class="token function">getContentType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> fileType<span class="token punctuation">,</span> file<span class="token punctuation">.</span><span class="token function">getSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> fileDownloadUri<span class="token punctuation">,</span>userId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>fileService<span class="token punctuation">.</span><span class="token function">insertFileInfo</span><span class="token punctuation">(</span>fileResources<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">AjaxResult</span><span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">AjaxResult</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 暂时无用</span>
+<span class="token comment">//    @PostMapping(&quot;/uploadMultipleFiles&quot;)</span>
+<span class="token comment">//    public AjaxResult uploadMultipleFiles(@RequestParam(&quot;files&quot;) MultipartFile[] files) {</span>
+<span class="token comment">//        List&lt;FileResources&gt; fileResourcesList=Arrays.stream(files)</span>
+<span class="token comment">//                .map(this::uploadFile)</span>
+<span class="token comment">//                .collect(Collectors.toList());</span>
+<span class="token comment">//        return AjaxResult.success(fileResourcesList);</span>
+<span class="token comment">//    }</span>
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/getUserFile&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">AjaxResult</span> <span class="token function">getUserFile</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">&quot;userId&quot;</span><span class="token punctuation">)</span> <span class="token keyword">long</span> userId<span class="token punctuation">,</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">&quot;fileType&quot;</span><span class="token punctuation">)</span><span class="token class-name">String</span> fileType<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token class-name">AjaxResult</span><span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span>fileService<span class="token punctuation">.</span><span class="token function">getUserFile</span><span class="token punctuation">(</span>userId<span class="token punctuation">,</span>fileType<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/downloadFile/{fileName:.+}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Resource</span><span class="token punctuation">&gt;</span></span> <span class="token function">downloadFile</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> fileName<span class="token punctuation">,</span> <span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Load file as Resource</span>
+        <span class="token class-name">Resource</span> resource <span class="token operator">=</span> fileService<span class="token punctuation">.</span><span class="token function">loadFileAsResource</span><span class="token punctuation">(</span>fileName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Try to determine file's content type</span>
+        <span class="token class-name">String</span> contentType <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            contentType <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getServletContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getMimeType</span><span class="token punctuation">(</span>resource<span class="token punctuation">.</span><span class="token function">getFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAbsolutePath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&quot;Could not determine file type.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// Fallback to the default content type if type could not be determined</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>contentType <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            contentType <span class="token operator">=</span> <span class="token string">&quot;application/octet-stream&quot;</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">contentType</span><span class="token punctuation">(</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span><span class="token function">parseMediaType</span><span class="token punctuation">(</span>contentType<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">header</span><span class="token punctuation">(</span><span class="token class-name">HttpHeaders</span><span class="token punctuation">.</span>CONTENT_DISPOSITION<span class="token punctuation">,</span> <span class="token string">&quot;attachment; filename=\&quot;&quot;</span> <span class="token operator">+</span> resource<span class="token punctuation">.</span><span class="token function">getFilename</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;\&quot;&quot;</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span>resource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">11/2/2021, 6:32:33 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/views/SpringBoot/main.html" class="prev">
+        简介与概览
+      </a></span> <span class="next"><a href="/views/SpringBoot/redisConfig.html">
+        配置redis
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.998050a2.js" defer></script><script src="/assets/js/2.863743f0.js" defer></script><script src="/assets/js/18.1466c914.js" defer></script>
+  </body>
+</html>
